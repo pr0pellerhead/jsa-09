@@ -7,6 +7,17 @@ const userSchema = {
     email: 'required|email',
 };
 
+const createAccountSchema = {
+    email: 'required|email',
+    password: 'required',
+    password2: 'required'
+};
+
+const loginSchema = {
+    email: 'required|email',
+    password: 'required'
+};
+
 const user = async (data, schema) => {
     let v = new Validator(data, schema);
     let res = await v.check();
@@ -18,5 +29,7 @@ const user = async (data, schema) => {
 
 module.exports = {
     userSchema,
+    createAccountSchema,
+    loginSchema,
     user,
 };

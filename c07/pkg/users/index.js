@@ -6,7 +6,8 @@ const User = mongoose.model(
         first_name: String,
         last_name: String,
         birthday: Date,
-        email: String
+        email: String,
+        password: String
     }
 );
 
@@ -16,6 +17,10 @@ const getAll = async () => {
 
 const getOne = async (id) => {
     return await User.findOne({_id: id});
+};
+
+const getOneByEmail = async (email) => {
+    return await User.findOne({ email });
 };
 
 const create = async (data) => {
@@ -37,4 +42,5 @@ module.exports = {
     create,
     update,
     remove,
+    getOneByEmail
 };
