@@ -2,8 +2,7 @@ const { Validator } = require('node-input-validator');
 
 const blogpostSchema = {
     title: 'required',
-    content: 'required',
-    user_id: 'required'
+    content: 'required'
 };
 
 const validate = async (data, schema) => {
