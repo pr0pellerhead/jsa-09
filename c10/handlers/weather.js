@@ -25,6 +25,32 @@ const getCityWeather = (req, res) => {
     });
 };
 
+const getCityWeatherAverage = (req, res) => {
+    weather.setAPPID('');
+    weather.setUnits('metric');
+    weather.setCity(req.params.city);
+    weather.getWeatherForecastForDays(8, function (err, data) {
+        if(err) {
+            console.log(err);
+            return res.status(500).send('Internal Server Error');
+        }
+        console.log(data);
+
+        let sum = 0;
+
+        for (let i = 0; i < data.list.length; i++) {
+            sum += data.list[i].temp.day;
+        }
+
+        let avg_temp = sum / data.list.length;
+
+        res.status(200).send({
+            avg_temp
+        });
+    });
+};
+
 module.exports = {
-    getCityWeather
+    getCityWeather,
+    getCityWeatherAverage
 };
