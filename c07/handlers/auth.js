@@ -20,6 +20,17 @@ const createAccount = async (req, res) => {
         req.body.password = bcrypt.hashSync(req.body.password);
 
         let data = await userData.create(req.body);
+
+        // await mailer.send(
+        //     req.body.email,
+        //     'Welcome',
+        //     {
+        //         first_name: req.body.first_name,
+        //         last_name: req.body.last_name,
+        //     },
+        //     'welcome'
+        // );
+
         return res.status(201).send('Created');
     } catch (err) {
         console.log(err);
